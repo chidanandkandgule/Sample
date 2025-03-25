@@ -1,0 +1,74 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: minmax(320px, 1fr) 3fr minmax(320px, 1fr); 
+    gap: 10px; /* Adds space between grid items */
+    overflow-y: auto;
+    height: 660px;
+  }
+  
+  .grid-item {
+    background-color: #ffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Border shadow effect */
+    transition: box-shadow 0.3s ease; /* Smooth transition for shadow on hover */
+     overflow-y: auto;
+  }
+
+  .grid-item:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+  }
+
+  .chat-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 10px 40px 10px 10px;
+    background-color: f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for the container */
+    position: fixed;
+    bottom: -40px;
+    right: 350px; 
+    width: 100%;
+  }
+  
+  .chat-textarea {
+    width: 100%;
+    height: 100px; /* Adjust height as needed */
+    padding: 15px;
+    font-size: 16px;
+    font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background */
+    resize: none; /* Disable resizing */
+    transition: all 0.3s ease; /* Smooth transition for focus effect */
+    
+  }
+  
+  .chat-textarea:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: #0078d4; /* Border color on focus (like ChatGPT's blue) */
+    background-color: #f9f9f9; /* Lighter background on focus */
+    box-shadow: 0 0 8px rgba(0, 120, 212, 0.3); /* Subtle blue glow */
+  }
+  
+  .chat-textarea::placeholder {
+    color: #888; /* Light gray placeholder text */
+    font-style: italic;
+  }
+
+  .send-button {
+    position: absolute;
+    bottom: 20px;
+    right: 11px;
+    padding: 0px 5px;
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
