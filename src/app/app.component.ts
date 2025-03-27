@@ -1,23 +1,26 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';  // Import FormsModule
 import { CommonModule } from '@angular/common';
+import { ChatComponent } from './chat/chat.component';
+import { SampageComponent } from './sampage/sampage.component';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,FormsModule,CommonModule],
+  imports: [RouterOutlet, FormsModule, CommonModule, RouterModule, ChatComponent,SampageComponent,HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent { 
-
+export class AppComponent {
+  firstscroll = false;
   questionlist = [];
-  name:string;
-
+  name: string;
+  scrollHeight = 0;
   title = 'sample-app';
-  htmlContent:string = '';
+  htmlContent: string = '';
   rawText = `A free trial is a promotional mechanism that allows potential customers to experience a product or service
          for a limited period of time without cost. Here’s a breakdown of key aspects and options related to free  
          trials:                                                                                                   
@@ -69,34 +72,44 @@ export class AppComponent {
          These details should provide a foundational understanding of what free trials entail and how they are     
          typically structured.`
 
-   constructor(){
+  messages: { text: string; type: 'user' | 'ai' }[] = [
+    { text: "Hello! How can I assist you?", type: 'ai' }
+  ];
+  @ViewChild('chatBox') chatBox!: ElementRef;
+  @ViewChild('chatBox') chatBox1!: ElementRef;
+  
+  constructor() {
 
-   }
+  }
 
-   ngOnInit(){
-    this.htmlContent = this.parseTextToHtml(this.rawText);
-   }
+  ngOnInit() {
+    //this.htmlContent = this.parseTextToHtml(this.rawText);
+  }
 
-    //Function to convert raw text to HTML
+  //Function to convert raw text to HTML
   parseTextToHtml(rawText: string): string {
     let htmlText = rawText;
 
     // Step 1: Handle escaped quotes (\" becomes ")
     htmlText = htmlText.replace(/\\"/g, '"');
 
-    // Step 2: Replace single newline characters with <br/> tags if they are not separating paragraphs
-    htmlText = htmlText.replace(/\n/g, '<br/>');
-    
-    // Step 3: Convert markdown-style bold (**bold**) to <strong>bold</strong>
+    // Step 2: Convert markdown headers (###) to <h3> tags
+    htmlText = htmlText.replace(/^\s*###\s+(.*)$/gm, '<h3>$1</h3>');
+    htmlText = htmlText.replace(/^\s*##\s+(.*)$/gm, '<h2>$1</h2>');
+    htmlText = htmlText.replace(/^\s*#\s+(.*)$/gm, '<h1>$1</h1>');
+
+
+    // Step 3: Replace single newline characters with <br/> tags if they are not separating paragraphs
+    // htmlText = htmlText.replace(/\n/g, '<br/>');
+
+    htmlText = htmlText.replace(/([^\n])\n([^\n])/g, '$1<br/>$2');
+
+
+    // Step 4: Convert markdown-style bold (**bold**) to <strong>bold</strong>
     htmlText = htmlText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
-    // Step 4: Convert markdown-style links [text](url) to <a href="url" target="_blank">text</a>
+    // Step 5: Convert markdown-style links [text](url) to <a href="url" target="_blank">text</a>
     htmlText = htmlText.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank">$1</a>');
-
-    // Step 5: Convert markdown headers (###) to <h3> tags
-    htmlText = htmlText.replace(/^### (.*?)$/gm, '<h3>$1</h3>');
-    htmlText = htmlText.replace(/^## (.*?)$/gm, '<h2>$1</h2>');
-    htmlText = htmlText.replace(/^# (.*?)$/gm, '<h1>$1</h1>');
 
     // Step 6: Convert markdown lists (- and 1.) to <ul> and <ol> respectively
     htmlText = htmlText.replace(/^\-\s+(.*)$/gm, '<ul><li>$1</li></ul>');
@@ -107,28 +120,81 @@ export class AppComponent {
 
     // Step 8: Convert paragraph breaks (\n\n) into <p></p> tags for proper paragraph separation
     htmlText = htmlText.replace(/\n\n/g, '</p><p>');
-    
+
     // Step 9: Wrap the entire content with <p> to ensure proper structure
     htmlText = `<p>${htmlText}</p>`;
 
     return htmlText;
   }
 
-  
-  onclick(){
-    if(this.name){
+
+  onclick() {
+    if (this.name) {
       this.questionlist.push(this.name)
-    this.name = ''
     }
+    if (!this.name.trim()) return;
+
+    // Add user message
+    this.messages.push({ text: this.name, type: 'user' });
+
+    // Clear input field
+    let sss = this.chatBox1.nativeElement.scrollHeight;
+   this.scrollToBottom();
+    this.name = '';
+
+    // Simulate AI response after a short delay
+    setTimeout(() => {
+      this.messages.push({ text: this.parseTextToHtml(this.rawText), type: 'ai' });
+      this.scrollToBottom1();
+    }, 1000);
+
   }
 
-  onEnter(event: KeyboardEvent): void {
-    if (event.key === 'Enter') {
+
+  scrollToBottom() {
+    setTimeout(() => {
+     // this.chatBox.nativeElement.scrollTop = this.chatBox.nativeElement.scrollHeight;
+
+      //this.chatBox.nativeElement.scrollTo({ top: this.chatBox.nativeElement.scrollHeight + 100, behavior: 'smooth' });
+
+      const chatElement = this.chatBox.nativeElement;
+      this.scrollHeight = this.chatBox.nativeElement.scrollHeight;
+      const extraPadding = this.messages.length > 10 ? 150 : 100; // Extra space at the bottom
+      this.chatBox.nativeElement.scrollTo({
+        top: chatElement.scrollHeight + extraPadding,
+        behavior: 'smooth'
+      });
+    }, );
+  }
+
+
+  scrollToBottom1() {
+    if(this.firstscroll){
+      setTimeout(() => {
+         const chatElement = this.chatBox.nativeElement;
+         this.chatBox.nativeElement.scrollTo({
+           top: this.scrollHeight - 80,  
+           behavior: 'smooth'
+         });
+       }, );
+    }
+    this.firstscroll = true;
+  }
+
+  
+  onEnter() {
+    if (this.name.trim()) {
+      console.log('Message sent:', this.name);
       this.onclick();
-    this.name = ''
+      // this.name = '';  // Clear input after sending
     }
   }
 
+  priviosQuestion(que){
+    this.name = que
+    this.onclick();
+  }
 
- 
+  
+
 }
