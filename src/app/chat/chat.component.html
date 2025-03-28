@@ -2,7 +2,7 @@
   <div style="background-color: #00d2b9; overflow-y: auto; height: 660px;">
     <h2 style="text-align: center;color: black;">List of previous question</h2>
     <div class="question-list" *ngFor="let que of questionlist">
-      <p (click)="priviosQuestion(que)">{{que}}</p>
+      <p style="overflow-wrap: break-word;" (click)="priviosQuestion(que)">{{que}}</p>
     </div>
   </div>
   <div class="grid-item chat-box" #chatBox>
