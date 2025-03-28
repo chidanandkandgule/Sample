@@ -18,7 +18,7 @@ nav {
   }
   
   ul {
-   // display: flex;
+    display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -47,5 +47,18 @@ nav {
     border-radius: 20px;
     outline: none;
     cursor: pointer;
+}
+
+.login-btn-user {
+  background-color: #00d2b9;
+  border: 5px solid #00d2b9;
+  border-width: 1px;
+  color: #ffff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 10px 20px 10px 20px;
+  border-radius: 20px;
+  outline: none;
+  cursor: pointer;
 }
   

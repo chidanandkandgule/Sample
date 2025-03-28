@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';  // Import FormsModule
 import { CommonModule } from '@angular/common';
@@ -78,7 +78,9 @@ export class AppComponent {
   @ViewChild('chatBox') chatBox!: ElementRef;
   @ViewChild('chatBox') chatBox1!: ElementRef;
   
-  constructor() {
+  constructor(private router: Router) {
+
+    
 
   }
 
@@ -86,6 +88,9 @@ export class AppComponent {
     //this.htmlContent = this.parseTextToHtml(this.rawText);
   }
 
+  showNavbar(): boolean {
+    return this.router.url !== '/';   
+  }
   //Function to convert raw text to HTML
   parseTextToHtml(rawText: string): string {
     let htmlText = rawText;
