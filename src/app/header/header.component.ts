@@ -15,6 +15,6 @@ constructor(private router: Router){}
 
 
   showNavbarButtons(): boolean {
-    return this.router.url !== '/';   
+    return this.router.url !== '/' && this.router.url !== '/login';   
   }
 }
