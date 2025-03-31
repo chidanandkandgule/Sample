@@ -89,18 +89,15 @@ export class ChatComponent {
 
     // Step 1: Handle escaped quotes (\" becomes ")
     htmlText = htmlText.replace(/\\"/g, '"');
-
+    
     // Step 2: Convert markdown headers (###) to <h3> tags
     htmlText = htmlText.replace(/^\s*###\s+(.*)$/gm, '<h3>$1</h3>');
     htmlText = htmlText.replace(/^\s*##\s+(.*)$/gm, '<h2>$1</h2>');
     htmlText = htmlText.replace(/^\s*#\s+(.*)$/gm, '<h1>$1</h1>');
 
-
     // Step 3: Replace single newline characters with <br/> tags if they are not separating paragraphs
     // htmlText = htmlText.replace(/\n/g, '<br/>');
-
     htmlText = htmlText.replace(/([^\n])\n([^\n])/g, '$1<br/>$2');
-
 
     // Step 4: Convert markdown-style bold (**bold**) to <strong>bold</strong>
     htmlText = htmlText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
@@ -133,12 +130,8 @@ export class ChatComponent {
 
     // Add user message
     this.messages.push({ text: this.name, type: 'user' });
-
-    // Clear input field
-    let sss = this.chatBox1.nativeElement.scrollHeight;
-   this.scrollToBottom();
+    this.scrollToBottom();
     this.name = '';
-
     // Simulate AI response after a short delay
     setTimeout(() => {
       this.messages.push({ text: this.parseTextToHtml(this.rawText), type: 'ai' });
@@ -150,10 +143,8 @@ export class ChatComponent {
 
   scrollToBottom() {
     setTimeout(() => {
-     // this.chatBox.nativeElement.scrollTop = this.chatBox.nativeElement.scrollHeight;
-
+      // this.chatBox.nativeElement.scrollTop = this.chatBox.nativeElement.scrollHeight;
       //this.chatBox.nativeElement.scrollTo({ top: this.chatBox.nativeElement.scrollHeight + 100, behavior: 'smooth' });
-
       const chatElement = this.chatBox.nativeElement;
       this.scrollHeight = this.chatBox.nativeElement.scrollHeight;
       const extraPadding = this.messages.length > 10 ? 150 : 100; // Extra space at the bottom
