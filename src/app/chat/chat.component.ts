@@ -69,9 +69,15 @@ export class ChatComponent {
          These details should provide a foundational understanding of what free trials entail and how they are     
          typically structured.`
 
+//   rawText= `âœ… Token retrieved successfully!
+// âœ… Product created successfully: {'Id': '4627c9fa4b7f402fb5119c1b5583a1aa', 'Success': True}`
+
   messages: { text: string; type: 'user' | 'ai' }[] = [
     { text: "Hello! How can I assist you?", type: 'ai' }
   ];
+
+  formattedMessages: any[] = [];
+
   @ViewChild('chatBox') chatBox!: ElementRef;
   @ViewChild('chatBox') chatBox1!: ElementRef;
   
@@ -115,11 +121,15 @@ export class ChatComponent {
     // Step 8: Convert paragraph breaks (\n\n) into <p></p> tags for proper paragraph separation
     htmlText = htmlText.replace(/\n\n/g, '</p><p>');
 
+
+    htmlText = htmlText.replace(/âœ…/g, '✅');
+
     // Step 9: Wrap the entire content with <p> to ensure proper structure
     htmlText = `<p>${htmlText}</p>`;
 
     return htmlText;
   }
+
 
 
   onclick() {
