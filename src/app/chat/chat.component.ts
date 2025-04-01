@@ -3,13 +3,16 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import {SampleAPIService} from '../services/sample-api.service'
+import {LoadingService} from '../services/loading.service'
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
-  imports: [FormsModule,CommonModule,RouterModule],
+  imports: [FormsModule,CommonModule,RouterModule,LoadingComponent],
 }) 
 export class ChatComponent {
   firstscroll = false;
@@ -81,7 +84,7 @@ export class ChatComponent {
   @ViewChild('chatBox') chatBox!: ElementRef;
   @ViewChild('chatBox') chatBox1!: ElementRef;
   
-  constructor() {
+  constructor(public SampleAPIService: SampleAPIService , public LoadingService:LoadingService) {
 
   }
 
@@ -133,6 +136,8 @@ export class ChatComponent {
 
 
   onclick() {
+    this.SampleAPIService.loading = true;
+    this.LoadingService.show();
     if (this.name) {
       this.questionlist.push(this.name)
     }
@@ -145,8 +150,10 @@ export class ChatComponent {
     // Simulate AI response after a short delay
     setTimeout(() => {
       this.messages.push({ text: this.parseTextToHtml(this.rawText), type: 'ai' });
+      this.SampleAPIService.loading = false;
+      this.LoadingService.hide();
       this.scrollToBottom1();
-    }, 1000);
+    }, 5000);
 
   }
 
