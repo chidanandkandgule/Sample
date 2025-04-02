@@ -178,7 +178,7 @@ export class ChatComponent {
       setTimeout(() => {
          const chatElement = this.chatBox.nativeElement;
          this.chatBox.nativeElement.scrollTo({
-           top: this.scrollHeight - 80,  
+           top: this.scrollHeight - 100,  
            behavior: 'smooth'
          });
        }, );
