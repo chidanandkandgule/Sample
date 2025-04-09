@@ -14,7 +14,7 @@
                 <button class="login-btn-user">Username</button>   
                 </li>
                 <li *ngIf="showNavbarButtons()">
-                  <button [routerLink]="['/login']" class="login-btn">Log Out</button>   
+                  <button  (click)="logOut()" class="login-btn">Log Out</button>   
                   </li>
       </ul>
     </nav>
