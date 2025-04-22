@@ -1,0 +1,41 @@
+.table-container {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 20px;
+    // margin: 40px;
+  }
+
+  .table thead th {
+    background-color: #b71c1c;
+    color: white;
+    font-weight: 600;
+  }
+
+  .table tbody td {
+    vertical-align: middle;
+    font-size: 14px;
+  }
+
+  .framework-title {
+    font-weight: 600;
+    font-size: 18px;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+  }
+
+  /* frameworks.component.css */
+.table-container {
+    margin-top: 20px;
+  }
+  .filter-section {
+    padding: 10px 0;
+  }
+  .framework-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  .dropdown-item {
+    cursor: pointer;
+  }
+  

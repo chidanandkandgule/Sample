@@ -1,0 +1,54 @@
+<!-- frameworks.component.html -->
+
+<div class="container table-container">
+    <div class="framework-title">Non-Common Control</div>
+    <div class="table-responsive" style="height: 550px;">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>
+                <span style="display: flex;">
+                    ControlId
+                    <div class="dropdown">
+                      <button style="margin-left: 10px;" class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      </button>
+                
+               
+                  <ul class="dropdown-menu p-2" aria-labelledby="dropdownMenuButton">
+                    <li *ngFor="let type of types">
+                      <label class="form-check-label d-flex align-items-center">
+                        <input
+                          type="checkbox"
+                          class="form-check-input me-2"
+                          [value]="type"
+                          (change)="toggleFramework(type, $event)"
+                          [checked]="selectedTypes.includes(type)"
+                        />
+                        {{ type }}
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+            </span>
+              </th>
+            <th>Framework</th>
+            <th>Control Name</th>
+            <th>Control Description</th>
+            <th>Control Type</th>
+            <th>Evidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fw of filteredFrameworks">
+            <td>{{ fw.controlId }}</td>
+            <td >{{ fw.framework }}</td>
+            <td style="width: 150px;">{{ fw.controlName }}</td>
+            <td>{{ fw.controlDescription }}</td>
+            <td>{{ fw.controlType }}</td>
+            <td>{{ fw.evidence }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

@@ -1,0 +1,55 @@
+<div style="background-color: #fff;">
+        <div>
+        <section class="hero-section">
+            <div class="container">
+            <h2 class="fw-bold">Control Harmonization Platform</h2>
+            <p class="mb-4">Seamlessly map and align security controls across frameworks</p>
+            <button class="login-btn">Learn More</button>  
+            </div>
+        </section>
+        </div>
+        <div>
+            <section class="summary-section">
+                <div class="container">
+                <h5 class="fw-bold mb-4">Framework and Control Summary</h5>
+                <div class="row g-4">
+                    <div class="col-md-3" [routerLink]="['/framework-table']">
+                    <div class="summary-card">
+                        <div class="summary-title">Subscribed Framework</div>
+                        <div class="summary-value">4</div>
+                        <div class="summary-subtext">All Subscribed Frameworks</div>
+                    </div>
+                    </div>
+                    <div class="col-md-3"  [routerLink]="['/total-control']" >
+                    <div class="summary-card">
+                        <div class="summary-title">Total Controls</div>
+                        <div class="summary-value">325</div>
+                        <div class="summary-subtext">All Subscribed Frameworks</div>
+                    </div>
+                    </div>
+                    <div class="col-md-3" [routerLink]="['/common-control']" >
+                    <div class="summary-card">
+                        <div class="summary-title">Common Controls</div>
+                        <div class="summary-value">287</div>
+                    </div>
+                    </div>
+                    <div class="col-md-3" [routerLink]="['/noncommon-control']">
+                    <div class="summary-card">
+                        <div class="summary-title">Non-Common Controls</div>
+                        <div class="summary-value">38</div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="top-strip">
+            <div class="container-fluid">
+            <div class="d-flex justify-content-end align-items-center">
+                <span class="brand-text">ESTUATE</span>
+            </div>
+            </div>
+        </div>
+
+</div>

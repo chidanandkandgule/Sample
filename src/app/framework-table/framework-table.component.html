@@ -1,0 +1,54 @@
+<!-- frameworks.component.html -->
+
+<div class="container table-container">
+    <div class="framework-title">Frameworks</div>
+    <div class="table-responsive" style="height: 250px;">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>
+                <span style="display: flex;">
+                    FRAMEWORK
+                    <div class="dropdown">
+                      <button style="margin-left: 10px;" class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      </button>
+                
+               
+                  <ul class="dropdown-menu p-2" aria-labelledby="dropdownMenuButton">
+                    <li *ngFor="let type of types">
+                      <label class="form-check-label d-flex align-items-center">
+                        <input
+                          type="checkbox"
+                          class="form-check-input me-2"
+                          [value]="type"
+                          (change)="toggleFramework(type, $event)"
+                          [checked]="selectedTypes.includes(type)"
+                        />
+                        {{ type }}
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+            </span>
+              </th>
+            <th>VERSION</th>
+            <th>TYPE</th>
+            <th>FOCUS AREA</th>
+            <th>PUBLISHED DATE</th>
+            <th>SOURCE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fw of filteredFrameworks">
+            <td>{{ fw.name }}</td>
+            <td>{{ fw.version }}</td>
+            <td>{{ fw.type }}</td>
+            <td>{{ fw.focus }}</td>
+            <td>{{ fw.date }}</td>
+            <td><a target="_blank" [href]="fw.source">View Source</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

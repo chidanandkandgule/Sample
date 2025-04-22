@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { SampleAPIService } from '../services/sample-api.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import { SampleAPIService } from '../services/sample-api.service';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-constructor(private router: Router ,private sampleAPIService:SampleAPIService){}
+constructor(private router: Router ,private sampleAPIService:SampleAPIService,private location: Location){}
 
 
 
@@ -19,9 +20,16 @@ constructor(private router: Router ,private sampleAPIService:SampleAPIService){}
     return this.router.url !== '/' && this.router.url !== '/login';   
   }
 
+  showBackButtons():boolean{
+    return this.router.url !== '/' && this.router.url !== '/login' && this.router.url !== '/dashboard';   
+  }
 
   logOut(){
     this.sampleAPIService.logout();
     this.router.navigate(['/login']);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

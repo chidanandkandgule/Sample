@@ -21,101 +21,101 @@ export class ChatComponent {
   scrollHeight = 0;
   title = 'sample-app';
   htmlContent: string = '';
-  // rawText = `A free trial is a promotional mechanism that allows potential customers to experience a product or service
-  //        for a limited period of time without cost. Here’s a breakdown of key aspects and options related to free  
-  //        trials:                                                                                                   
+  rawText = `A free trial is a promotional mechanism that allows potential customers to experience a product or service
+         for a limited period of time without cost. Here’s a breakdown of key aspects and options related to free  
+         trials:                                                                                                   
                                                                                                                    
-  //        ### Purpose of Free Trials                                                                                
-  //        - **Attract New Customers**: Free trials serve as a way to let prospective customers try out products or  
-  //        services before deciding to make a purchase.                                                              
-  //        - **Upgrade Potential**: The goal is to attract users with the free trial, providing an opportunity to    
-  //        transition them into paying customers once they see the value.                                            
+         ### Purpose of Free Trials                                                                                
+         - **Attract New Customers**: Free trials serve as a way to let prospective customers try out products or  
+         services before deciding to make a purchase.                                                              
+         - **Upgrade Potential**: The goal is to attract users with the free trial, providing an opportunity to    
+         transition them into paying customers once they see the value.                                            
                                                                                                                    
-  //        ### Types of Free Trials                                                                                  
-  //        1. **Time-Limited Free Trials**:                                                                          
-  //           - These are free trials that are available for a certain period, like 14 days or a month.              
-  //           - Users generally have two options when the trial ends:                                                
-  //             - **Sign On for a Paid Plan**: Users can choose to continue the service by subscribing to a paid     
-  //        plan.                                                                                                     
-  //             - **Automatic Conversion to a Paid Plan**: Users are automatically subscribed to a paid plan if they 
-  //        do not cancel before the trial ends.                                                                      
+         ### Types of Free Trials                                                                                  
+         1. **Time-Limited Free Trials**:                                                                          
+            - These are free trials that are available for a certain period, like 14 days or a month.              
+            - Users generally have two options when the trial ends:                                                
+              - **Sign On for a Paid Plan**: Users can choose to continue the service by subscribing to a paid     
+         plan.                                                                                                     
+              - **Automatic Conversion to a Paid Plan**: Users are automatically subscribed to a paid plan if they 
+         do not cancel before the trial ends.                                                                      
                                                                                                                    
-  //        2. **Endless Free Trials**:                                                                               
-  //           - These have no expiration date but offer only a basic version of the product with limited features.   
-  //           - The customer can upgrade to a paid version anytime to unlock additional features.                    
+         2. **Endless Free Trials**:                                                                               
+            - These have no expiration date but offer only a basic version of the product with limited features.   
+            - The customer can upgrade to a paid version anytime to unlock additional features.                    
                                                                                                                    
-  //        ### Administration of Free Trials in Zuora                                                                
-  //        - **Outside of Zuora**: You can manage trial accounts externally and only create a subscription in Zuora  
-  //        when the prospective customer decides to purchase.                                                        
-  //        - **Inside Zuora**: The trial is managed within Zuora. The system waits to charge the customer until the  
-  //        trial has ended, making it applicable for time-limited trials.                                            
+         ### Administration of Free Trials in Zuora                                                                
+         - **Outside of Zuora**: You can manage trial accounts externally and only create a subscription in Zuora  
+         when the prospective customer decides to purchase.                                                        
+         - **Inside Zuora**: The trial is managed within Zuora. The system waits to charge the customer until the  
+         trial has ended, making it applicable for time-limited trials.                                            
                                                                                                                    
-  //        ### Considerations for Implementing Free Trials                                                           
-  //        - **Subscription Dates and Charges**:                                                                     
-  //          - Two main dates to consider: the free trial start (Contract Effective Date) and the date charges begin 
-  //        if the user converts (Service Activation Date).                                                           
-  //          - Charge models can be flat fees (with a charge amount of $0) or discounts showing usual prices and     
-  //        applying a full discount for the trial period.                                                            
+         ### Considerations for Implementing Free Trials                                                           
+         - **Subscription Dates and Charges**:                                                                     
+           - Two main dates to consider: the free trial start (Contract Effective Date) and the date charges begin 
+         if the user converts (Service Activation Date).                                                           
+           - Charge models can be flat fees (with a charge amount of $0) or discounts showing usual prices and     
+         applying a full discount for the trial period.                                                            
                                                                                                                    
-  //        ### Examples of Free Trial Offers                                                                         
-  //        1. **14-Day Free Trial with Automatic Conversion**: Starts free, then automatically converts to a paid    
-  //        monthly plan after the trial ends.                                                                        
-  //        2. **One-Month Free Trial with Automatic Conversion using Discount Model**: Offers a discount for the     
-  //        first month, converting to paid thereafter.                                                               
-  //        3. **Option to Sign-On after a One-Month Free Trial**: Allows the customer to decide whether to continue  
-  //        and subscribe to a paid plan post-trial.                                                                  
+         ### Examples of Free Trial Offers                                                                         
+         1. **14-Day Free Trial with Automatic Conversion**: Starts free, then automatically converts to a paid    
+         monthly plan after the trial ends.                                                                        
+         2. **One-Month Free Trial with Automatic Conversion using Discount Model**: Offers a discount for the     
+         first month, converting to paid thereafter.                                                               
+         3. **Option to Sign-On after a One-Month Free Trial**: Allows the customer to decide whether to continue  
+         and subscribe to a paid plan post-trial.                                                                  
                                                                                                                    
-  //        For more details on the implementation of free trials in Zuora, you can refer to [Zuora's detailed        
-  //        guide](https://knowledgecenter.zuora.com/Quick_References/How_Do_I_._._./How_do_I_handle_free_trials_in_Zu
-  //        ora%3F).                                                                                                  
+         For more details on the implementation of free trials in Zuora, you can refer to [Zuora's detailed        
+         guide](https://knowledgecenter.zuora.com/Quick_References/How_Do_I_._._./How_do_I_handle_free_trials_in_Zu
+         ora%3F).                                                                                                  
                                                                                                                    
-  //        These details should provide a foundational understanding of what free trials entail and how they are     
-  //        typically structured.`
+         These details should provide a foundational understanding of what free trials entail and how they are     
+         typically structured.`
 
 //   rawText= `âœ… Token retrieved successfully!
 // âœ… Product created successfully: {'Id': '4627c9fa4b7f402fb5119c1b5583a1aa', 'Success': True}`
  
-rawText = `
-Here is a general guide on creating an account in Zuora:
-Visit the Zuora Website:
-- Go to the Zuora Homepage. Look for a 'Sign Up', 'Get Started', or 'Contact Sales' option, as the homepage might not have a direct sign-up link like consumer websites.
-Contact Sales or Request a Demo:
-- Sometimes, businesses need to contact sales teams to start the process. You can request a demo or fill out a contact form, particularly for enterprise software like Zuora, which might require a custom plan.
-- Visit the Contact Page if you don’t see a direct sign-up link.
-Provide Business Information:
-- Provide necessary details about your business as requested. This might include company name, size, industry, and what you hope to achieve with Zuora.
-Account Setup:
-- Following your inquiry or request, a Zuora representative might contact you to discuss further steps, including the products you need and any specific configurations.
-- You might then receive login credentials to access and set up your Zuora dashboard.
-Configure Your Account:
-- Once logged in, you can start configuring your account settings, billing preferences, and integrate with your existing systems.
-For specific and up-to-date guidance, please consider reaching out directly to Zuora’s support team or sales representatives through their official contact channels. They can provide detailed assistance tailored to your business needs.
-To create an account in Zuora, you can use the following API endpoint:
-Endpoint URL: https://rest.apisandbox.zuora.com/v1/accounts
-JSON BODY:`+
-`json
-{ "url": "https://rest.apisandbox.zuora.com/v1/accounts",
-"name": "Test Demo",
-"billToContact": {
-"firstName": "Jim",
-"lastName": "Test",
-"country": "United States",
-"state": "CA"
-},
-"autoPay": false,
-"currency": "USD",
-"billCycleDay": 1
-} `+
-`Please specify the values for the following parameters:
-- name
-- firstName
-- lastName
-- country
-- state
-- autoPay (true or false)
-- currency
-- billCycleDay
-Once you provide the values, I can update the JSON body accordingly.`
+// rawText = `
+// Here is a general guide on creating an account in Zuora:
+// Visit the Zuora Website:
+// - Go to the Zuora Homepage. Look for a 'Sign Up', 'Get Started', or 'Contact Sales' option, as the homepage might not have a direct sign-up link like consumer websites.
+// Contact Sales or Request a Demo:
+// - Sometimes, businesses need to contact sales teams to start the process. You can request a demo or fill out a contact form, particularly for enterprise software like Zuora, which might require a custom plan.
+// - Visit the Contact Page if you don’t see a direct sign-up link.
+// Provide Business Information:
+// - Provide necessary details about your business as requested. This might include company name, size, industry, and what you hope to achieve with Zuora.
+// Account Setup:
+// - Following your inquiry or request, a Zuora representative might contact you to discuss further steps, including the products you need and any specific configurations.
+// - You might then receive login credentials to access and set up your Zuora dashboard.
+// Configure Your Account:
+// - Once logged in, you can start configuring your account settings, billing preferences, and integrate with your existing systems.
+// For specific and up-to-date guidance, please consider reaching out directly to Zuora’s support team or sales representatives through their official contact channels. They can provide detailed assistance tailored to your business needs.
+// To create an account in Zuora, you can use the following API endpoint:
+// Endpoint URL: https://rest.apisandbox.zuora.com/v1/accounts
+// JSON BODY:`+
+// `json
+// { "url": "https://rest.apisandbox.zuora.com/v1/accounts",
+// "name": "Test Demo",
+// "billToContact": {
+// "firstName": "Jim",
+// "lastName": "Test",
+// "country": "United States",
+// "state": "CA"
+// },
+// "autoPay": false,
+// "currency": "USD",
+// "billCycleDay": 1
+// } `+
+// `Please specify the values for the following parameters:
+// - name
+// - firstName
+// - lastName
+// - country
+// - state
+// - autoPay (true or false)
+// - currency
+// - billCycleDay
+// Once you provide the values, I can update the JSON body accordingly.`
 
   messages: { text: string; type: 'user' | 'ai' }[] = [
     { text: "Hello! How can I assist you?", type: 'ai' }
@@ -180,10 +180,10 @@ Once you provide the values, I can update the JSON body accordingly.`
 
     //htmlText = htmlText.replace(dynamicJsonPattern, '').trim();
     // Step 9: Wrap the entire content with <p> to ensure proper structure
-    const extracted = this.extractJsonStringSafe(htmlText);
-    console.log("Extracted JSON object:", extracted);
-    htmlText = htmlText.replace(extracted, '');
-    htmlText = htmlText.replace('JSON BODY:json', '');
+    // const extracted = this.extractJsonStringSafe(htmlText);
+    // console.log("Extracted JSON object:", extracted);
+    // htmlText = htmlText.replace(extracted, '');
+    // htmlText = htmlText.replace('JSON BODY:json', '');
    
     htmlText = `<p>${htmlText}</p>`;
     

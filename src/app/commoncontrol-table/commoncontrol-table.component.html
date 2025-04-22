@@ -1,0 +1,58 @@
+<!-- frameworks.component.html -->
+
+<div class="container table-container">
+    <div class="framework-title">Common Control</div>
+    <div class="table-responsive" style="height: 600px;">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>
+                <span style="display: flex;">
+                    controlName
+                    <div class="dropdown">
+                      <button style="margin-left: 10px;" class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      </button>
+                
+               
+                  <ul class="dropdown-menu p-2" aria-labelledby="dropdownMenuButton">
+                    <li *ngFor="let type of types">
+                      <label class="form-check-label d-flex align-items-center">
+                        <input
+                          type="checkbox"
+                          class="form-check-input me-2"
+                          [value]="type"
+                          (change)="toggleFramework(type, $event)"
+                          [checked]="selectedTypes.includes(type)"
+                        />
+                        {{ type }}
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+            </span>
+              </th>
+            <th>controlId</th>
+            <th>Framework</th>
+            <th>control Description</th>
+            <th>Related Frameworks</th>
+            <th>Subscribed Framework ControlIds</th>
+            <th>ControlType</th>
+            <th>Evidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let fw of filteredFrameworks">
+            <td>{{ fw.controlName }}</td>
+            <td >{{ fw.controlId }}</td>
+            <td >{{ fw.framework }}</td>
+            <td style="width: 350px;">{{ fw.controlDescription }}</td>
+            <td style="width: 200px;">{{ fw.relatedFrameworks }}</td>
+            <td style="width: 350px;">{{ fw.subscribedFrameworkControlIds }}</td>
+            <td>{{ fw.controlType }}</td>
+            <td>{{ fw.evidence }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

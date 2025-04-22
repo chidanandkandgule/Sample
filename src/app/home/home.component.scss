@@ -1,0 +1,74 @@
+.hero-section {
+  background-color: #b71c1c; /* Deep red */
+  color: white;
+  padding: 100px 20px;
+  text-align: left;
+}
+
+.hero-button {
+  border: 1px solid white;
+  color: white;
+}
+
+.hero-button:hover {
+  background-color: white;
+  color: #b71c1c;
+}
+
+.login-btn {
+    background-color: #b71c1c;
+    border: 5px solid #fff;
+    border-width: 1px;
+    color: #fff;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+.summary-section {
+    background-color: #fff;
+    padding: 80px 0;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* shadow below section */
+  }
+
+  .summary-card {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 20px;
+    min-height: 120px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+  }
+
+  .summary-title {
+    color: #1a1a1a;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .summary-value {
+    color: #b71c1c;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .summary-subtext {
+    font-size: 12px;
+    color: #666;
+  }
+
+  .top-strip {
+    // background-color: #fff;
+    // box-shadow: 0 5px 8px -5px rgba(0, 0, 0, 0.3); /* soft bottom shadow */
+    padding: 8px 20px;
+    margin-top: 10px;
+  }
+
+  .brand-text {
+    color: #b71c1c;
+    font-weight: bold;
+    font-size: 30px;
+  }

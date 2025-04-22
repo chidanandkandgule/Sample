@@ -18,15 +18,18 @@ export class LoginComponent {
   constructor( private router: Router , private sampleAPIService:SampleAPIService,private authService:AuthService) {}
 
   login() {
-    this.sampleAPIService.login('emilys', 'emilyspass').subscribe({
-      next: (data:any) => {
-        console.log('Login successful:', data);
-        this.authService.setToken(data.accessToken); 
-        this.router.navigate(['/chart']);
-      },
-      error: (err) => {
-        console.error('Login failed:', err);
-      }
-    });
+
+    this.router.navigate(['/dashboard']);
+
+    // this.sampleAPIService.login('emilys', 'emilyspass').subscribe({
+    //   next: (data:any) => {
+    //     console.log('Login successful:', data);
+    //    // this.authService.setToken(data.accessToken); 
+    //     this.router.navigate(['/dashboard']);
+    //   },
+    //   error: (err) => {
+    //     console.error('Login failed:', err); 
+    //   }
+    // });
   }
 }
