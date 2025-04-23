@@ -20,3 +20,42 @@ body {
     font-family: 'Inter', 'Helvetica', 'Arial', sans-serif;
     font-weight: 700;
   }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+app-totalcontrol-table .mat-sort-header-arrow {
+  color: white !important;
+}
+
+app-totalcontrol-table .mat-sort-header-arrow :hover {
+  color: white !important;
+}
+
+app-framework-table .mat-sort-header-arrow {
+  color: white !important;
+}
+
+app-framework-table .mat-sort-header-arrow :hover {
+  color: white !important;
+}
+
+app-commoncontrol-table .mat-sort-header-arrow {
+  color: white !important;
+}
+
+app-commoncontrol-table .mat-sort-header-arrow :hover {
+  color: white !important;
+}
+
+app-noncommoncontrol-table .mat-sort-header-arrow {
+  color: white !important;
+}
+
+app-noncommoncontrol-table .mat-sort-header-arrow :hover {
+  color: white !important;
+}
+
+
+
+
+

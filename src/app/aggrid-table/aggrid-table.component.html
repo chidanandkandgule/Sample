@@ -6,14 +6,14 @@
   </mat-form-field>
 
   <table mat-table [dataSource]="dataSource" matSort>
-    <!-- name Column -->
-    <ng-container matColumnDef="name">
+    <!-- Framework Column -->
+    <ng-container matColumnDef="framework">
       <th mat-header-cell *matHeaderCellDef mat-sort-header
-          [ngClass]="{'sticky-column': isSticky('name')}"
-          [ngStyle]="isSticky('name') ? {'left.px': getStickyLeft('name')} : {}">
-        Name
+          [ngClass]="{'sticky-column': isSticky('framework')}"
+          [ngStyle]="isSticky('framework') ? {'left.px': getStickyLeft('framework')} : {}">
+        Framework
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.framework }}</td>
     </ng-container>
 
     <!-- Version Column -->
@@ -27,43 +27,43 @@
     </ng-container>
 
     <!-- Control ID Column -->
-    <ng-container matColumnDef="type">
+    <ng-container matColumnDef="controlId">
       <th mat-header-cell *matHeaderCellDef mat-sort-header
-          [ngClass]="{'sticky-column': isSticky('type')}"
-          [ngStyle]="isSticky('type') ? {'left.px': getStickyLeft('type')} : {}">
-        Type
+          [ngClass]="{'sticky-column': isSticky('controlId')}"
+          [ngStyle]="isSticky('controlId') ? {'left.px': getStickyLeft('controlId')} : {}">
+        Control ID
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.controlId }}</td>
     </ng-container>
 
     <!-- Control Name Column -->
-    <ng-container matColumnDef="focus">
+    <ng-container matColumnDef="controlName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header
-          [ngClass]="{'sticky-column': isSticky('focus')}"
-          [ngStyle]="isSticky('focus') ? {'left.px': getStickyLeft('focus')} : {}">
-          Focus
+          [ngClass]="{'sticky-column': isSticky('controlName')}"
+          [ngStyle]="isSticky('controlName') ? {'left.px': getStickyLeft('controlName')} : {}">
+        Control Name
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.focus }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.controlName }}</td>
     </ng-container>
 
     <!-- Control Description Column -->
-    <ng-container matColumnDef="date">
+    <ng-container matColumnDef="controlDescription">
       <th mat-header-cell *matHeaderCellDef mat-sort-header
-          [ngClass]="{'sticky-column': isSticky('date')}"
-          [ngStyle]="isSticky('date') ? {'left.px': getStickyLeft('date')} : {}">
-          Date
+          [ngClass]="{'sticky-column': isSticky('controlDescription')}"
+          [ngStyle]="isSticky('controlDescription') ? {'left.px': getStickyLeft('controlDescription')} : {}">
+        Control Description
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.controlDescription }}</td>
     </ng-container>
 
     <!-- Category Column -->
-    <ng-container matColumnDef="source">
+    <ng-container matColumnDef="category">
       <th mat-header-cell *matHeaderCellDef mat-sort-header
-          [ngClass]="{'sticky-column': isSticky('source')}"
-          [ngStyle]="isSticky('source') ? {'left.px': getStickyLeft('source')} : {}">
-          Source
+          [ngClass]="{'sticky-column': isSticky('category')}"
+          [ngStyle]="isSticky('category') ? {'left.px': getStickyLeft('category')} : {}">
+        Category
       </th>
-      <td mat-cell *matCellDef="let element">{{ element.source }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.category }}</td>
     </ng-container>
 
     <!-- Table Footer with Paginator -->

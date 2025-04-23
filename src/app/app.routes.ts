@@ -7,6 +7,7 @@ import { FrameworkTableComponent } from './framework-table/framework-table.compo
 import { TotalcontrolTableComponent } from './totalcontrol-table/totalcontrol-table.component';
 import { CommoncontrolTableComponent } from './commoncontrol-table/commoncontrol-table.component';
 import { NoncommoncontrolTableComponent } from './noncommoncontrol-table/noncommoncontrol-table.component';
+import { AggridTableComponent } from './aggrid-table/aggrid-table.component';
 
 export const routes: Routes = [
     { path:'', component:LoginComponent},
@@ -18,9 +19,6 @@ export const routes: Routes = [
     {path:"total-control",component:TotalcontrolTableComponent},
     {path:"common-control",component:CommoncontrolTableComponent},
     {path:"noncommon-control",component:NoncommoncontrolTableComponent},
-
-    
-
-    
+    {path:"aggrid-table",component:AggridTableComponent},
 
 ];

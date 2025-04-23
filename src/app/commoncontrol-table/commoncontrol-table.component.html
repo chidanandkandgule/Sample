@@ -1,58 +1,96 @@
-<!-- frameworks.component.html -->
+<div class="table-container">
+  <!-- Filter Input -->
+  <mat-form-field appearance="outline">
+    <mat-label>Filter</mat-label>
+    <input matInput (input)="applyFilter($event)" placeholder="Filter..." />
+  </mat-form-field>
 
-<div class="container table-container">
-    <div class="framework-title">Common Control</div>
-    <div class="table-responsive" style="height: 600px;">
-      <table class="table table-bordered table-striped">
-        <thead>
-          <tr>
-            <th>
-                <span style="display: flex;">
-                    controlName
-                    <div class="dropdown">
-                      <button style="margin-left: 10px;" class="btn btn-sm btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                      </button>
-                
-               
-                  <ul class="dropdown-menu p-2" aria-labelledby="dropdownMenuButton">
-                    <li *ngFor="let type of types">
-                      <label class="form-check-label d-flex align-items-center">
-                        <input
-                          type="checkbox"
-                          class="form-check-input me-2"
-                          [value]="type"
-                          (change)="toggleFramework(type, $event)"
-                          [checked]="selectedTypes.includes(type)"
-                        />
-                        {{ type }}
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-            </span>
-              </th>
-            <th>controlId</th>
-            <th>Framework</th>
-            <th>control Description</th>
-            <th>Related Frameworks</th>
-            <th>Subscribed Framework ControlIds</th>
-            <th>ControlType</th>
-            <th>Evidence</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let fw of filteredFrameworks">
-            <td>{{ fw.controlName }}</td>
-            <td >{{ fw.controlId }}</td>
-            <td >{{ fw.framework }}</td>
-            <td style="width: 350px;">{{ fw.controlDescription }}</td>
-            <td style="width: 200px;">{{ fw.relatedFrameworks }}</td>
-            <td style="width: 350px;">{{ fw.subscribedFrameworkControlIds }}</td>
-            <td>{{ fw.controlType }}</td>
-            <td>{{ fw.evidence }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- name Column -->
+    <ng-container matColumnDef="controlName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header
+          [ngClass]="{'sticky-column': isSticky('controlName')}"
+          [ngStyle]="isSticky('controlName') ? {'left.px': getStickyLeft('controlName')} : {}">
+          Control Name
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.controlName }}</td>
+    </ng-container>
+
+    <!-- controlId Column -->
+    <ng-container matColumnDef="controlId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header
+          [ngClass]="{'sticky-column': isSticky('controlId')}"
+          [ngStyle]="isSticky('controlId') ? {'left.px': getStickyLeft('controlId')} : {}">
+          Control Id
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.controlId }}</td>
+    </ng-container>
+
+    <!-- Framework Column -->
+    <ng-container matColumnDef="framework">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header
+          [ngClass]="{'sticky-column': isSticky('framework')}"
+          [ngStyle]="isSticky('framework') ? {'left.px': getStickyLeft('framework')} : {}">
+          Framework
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.framework }}</td>
+    </ng-container>
+
+    <!-- controlDescription Column -->
+    <ng-container matColumnDef="controlDescription">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header
+          [ngClass]="{'sticky-column': isSticky('controlDescription')}"
+          [ngStyle]="isSticky('controlDescription') ? {'left.px': getStickyLeft('controlDescription')} : {}">
+          Control Description
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.controlDescription }}</td>
+    </ng-container>
+
+    <!--  relatedFrameworks Column -->
+    <ng-container matColumnDef="relatedFrameworks">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header
+          [ngClass]="{'sticky-column': isSticky('relatedFrameworks')}"
+          [ngStyle]="isSticky('relatedFrameworks') ? {'left.px': getStickyLeft('relatedFrameworks')} : {}">
+          Related Frameworks
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.relatedFrameworks }}</td>
+    </ng-container>
+
+    <!-- subscribedFrameworkControlIds Column -->
+    <ng-container matColumnDef="subscribedFrameworkControlIds">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header
+          [ngClass]="{'sticky-column': isSticky('subscribedFrameworkControlIds')}"
+          [ngStyle]="isSticky('subscribedFrameworkControlIds') ? {'left.px': getStickyLeft('subscribedFrameworkControlIds')} : {}">
+          Subscribed Framework ControlIds
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.subscribedFrameworkControlIds }}</td>
+    </ng-container>
+
+    <!-- controlType Column -->
+    <ng-container matColumnDef="controlType">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header
+          [ngClass]="{'sticky-column': isSticky('controlType')}"
+          [ngStyle]="isSticky('controlType') ? {'left.px': getStickyLeft('controlType')} : {}">
+          Control Type
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.controlType }}</td>
+    </ng-container>
+
+    <!-- evidence Column -->
+    <ng-container matColumnDef="evidence">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header
+          [ngClass]="{'sticky-column': isSticky('evidence')}"
+          [ngStyle]="isSticky('evidence') ? {'left.px': getStickyLeft('evidence')} : {}">
+          Evidence
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.evidence }}</td>
+    </ng-container>
+    
+
+    <!-- Table Footer with Paginator -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [length]="data.length" [pageSize]="5" [pageSizeOptions]="[5, 10, 20]"></mat-paginator>
+</div>

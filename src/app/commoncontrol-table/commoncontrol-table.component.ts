@@ -1,25 +1,31 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common'; // For ngIf, ngFor
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 @Component({
   selector: 'app-commoncontrol-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatButtonModule],
   templateUrl: './commoncontrol-table.component.html',
   styleUrl: './commoncontrol-table.component.scss'
 })
 export class CommoncontrolTableComponent {
 
-  types: string[] = ["Asset Inventory",
-  "Identity and Access Control",
-  "User Access Provisioning",
-  "Technical Vulnerability Management",
-  "Data Minimization",
-  "Security of Processing",
-  "Risk Management Framework",
-  "Solution Requirements Definition"]; // List of available framework types
-  selectedTypes: string[] = []; // Store selected frameworks
-  controls = [
+  displayedColumns: string[] = ['controlName', 'controlId', 'framework', 'controlDescription', 'relatedFrameworks', 'subscribedFrameworkControlIds', 'controlType', 'evidence']
+
+  stickyColumns: string[] = ['controlName'];
+  data = [
     {
       controlName: "Asset Inventory",
       controlId: "CM-8",
@@ -103,24 +109,55 @@ export class CommoncontrolTableComponent {
   ];
   
 
-  filteredFrameworks: any[] = [...this.controls];  // Initially, all data is visible
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
+  // Paginator and Sort
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  // Toggle framework selection in the selectedTypes array
-  toggleFramework(type: string, event: any) {
-    if (event.target.checked) {
-      this.selectedTypes.push(type);
-    } else {
-      this.selectedTypes = this.selectedTypes.filter(t => t !== type);
-    }
-    this.filterData();
+  constructor() {
+    this.dataSource.data = this.data; // Assign data to the data source
   }
 
-  // Filter data based on selected frameworks 
-  filterData() {
-    if (this.selectedTypes.length > 0) {
-      this.filteredFrameworks = this.controls.filter(item => this.selectedTypes.includes(item.controlName));
-    } else {
-      this.filteredFrameworks = [...this.controls];  // Reset to show all if no filter is selected
+  ngOnInit(): void {
+    // this.dataSource.paginator = this.paginator; // Initialize paginator
+    // this.dataSource.sort = this.sort; // Initialize sorting
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+  
+
+  // Apply filter
+  applyFilter(event: Event): void {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
   }
+
+  isSticky(column: string): boolean {
+    return this.stickyColumns.includes(column);
+  }
+
+  getStickyLeft(column: string): number {
+    const index = this.displayedColumns.indexOf(column);
+    const stickyBefore = this.displayedColumns.slice(0, index).filter(c => this.isSticky(c));
+    const columnWidths = {
+      controlName: 150,
+      controlId: 100,
+      framework: 100,
+      controlDescription: 300,
+      relatedFrameworks: 300,
+      subscribedFrameworkControlIds: 300,
+      controlType: 100,
+      evidence: 200
+    };
+  
+    return stickyBefore.reduce((acc, col) => acc + (columnWidths[col] || 100), 0);
+  }
+
 }
