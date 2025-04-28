@@ -3,7 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 
 @Component({
@@ -122,6 +122,40 @@ export class TotalcontrolTableComponent {
        this.dataSource.paginator.firstPage();
      }
    }
+
+   sortData(sort: Sort) {
+    const data = this.data.slice(); // clone original data
+
+    if (!sort.active || sort.direction === '') {
+      this.dataSource.data = data;
+      return;
+    }
+
+    this.dataSource.data = data.sort((a, b) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'framework':
+          return this.compare(a.framework, b.framework, isAsc);
+        case 'version':
+          return this.compare(a.version, b.version, isAsc);
+        case 'controlId':
+          return this.compare(a.controlId, b.controlId, isAsc);
+        case 'controlName':
+          return this.compare(a.controlName, b.controlName, isAsc);
+        case 'controlDescription':
+          return this.compare(a.controlDescription, b.controlDescription, isAsc);
+        case 'category':
+          return this.compare(a.category, b.category, isAsc);
+        default:
+          return 0;
+      }
+    });
+  }
+
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+  }
+  
  
    isSticky(column: string): boolean {
      return this.stickyColumns.includes(column);

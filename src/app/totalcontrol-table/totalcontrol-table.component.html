@@ -5,7 +5,7 @@
     <input matInput (input)="applyFilter($event)" placeholder="Filter..." />
   </mat-form-field>
 
-  <table mat-table [dataSource]="dataSource" matSort>
+  <table mat-table [dataSource]="dataSource" matSort  (matSortChange)="sortData($event)">
     <!-- Framework Column -->
     <ng-container matColumnDef="framework">
       <th mat-header-cell *matHeaderCellDef mat-sort-header
